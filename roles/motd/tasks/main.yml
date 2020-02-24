@@ -1,9 +1,6 @@
 ---
 # tasks file for motd
 
-- name: Add landscape-common
-  apt: name=landscape-common state=latest
-
 - name: Remove help text
   file: mode=0644 path=/etc/update-motd.d/10-help-text
 
