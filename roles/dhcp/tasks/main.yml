@@ -1,0 +1,15 @@
+---
+# tasks file for dhcp
+
+- name: Install isc-dhcp-server
+  apt:
+    name: isc-dhcp-server
+    state: present
+
+- name: Copy dhcpd.conf
+  template:
+    src: dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf
+
+- name: Restart isc-dhcp-server
+  service: state=restarted name=isc-dhcp-server

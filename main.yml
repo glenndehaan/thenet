@@ -4,5 +4,5 @@
   roles:
     - { role: motd }
     - { role: dns }
-#    - { role: dhcp }
+    - { role: dhcp }
 #    - { role: web }
