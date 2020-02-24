@@ -6,6 +6,11 @@
     name: bind9
     state: present
 
+- name: Install dnsutils
+  apt:
+    name: dnsutils
+    state: present
+
 - name: Copy named.conf.local
   template:
     src: named.conf.local
