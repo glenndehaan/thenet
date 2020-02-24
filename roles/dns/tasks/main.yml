@@ -11,10 +11,27 @@
     name: dnsutils
     state: present
 
-- name: Copy named.conf.local
+- name: Copy named.conf
   template:
-    src: named.conf.local
-    dest: /etc/bind/named.conf.local
+    src: named.conf
+    dest: /etc/bind/named.conf
+
+- name: Remove unneeded config files
+  file:
+    path: /etc/bind/{{ item }}
+    state: absent
+  with_items:
+    - bind.keys
+    - db.0
+    - db.127
+    - db.255
+    - db.empty
+    - db.local
+    - named.conf.default-zones
+    - named.conf.local
+    - named.conf.options
+    - rndc.key
+    - zones.rfc1918
 
 - name: Ensure the /etc/bind/zones directory exists
   file:
