@@ -1,0 +1,23 @@
+---
+# tasks file for dns
+
+- name: Install bind9
+  apt:
+    name: bind9
+    state: present
+
+- name: Copy named.conf.local
+  template:
+    src: named.conf.local
+    dest: /etc/bind/named.conf.local
+
+- name: Copy zones
+  notify: restart bind
+  template:
+    src: "zones/{{ item }}"
+    dest: "/etc/bind/zones/{{ item }}"
+  with_items:
+    - db.thenet.com
+
+- name: Restart bind9
+  service: state=restarted name=bind9
