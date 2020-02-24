@@ -13,7 +13,7 @@ fi
 if ! type "ansible" > /dev/null; then
   echo "Missing ansible! Attempting to install now..."
   apt update
-  apt install python ansible
+  apt install -y python ansible
 fi
 
 ansible-playbook -i hosts main.yml
