@@ -1,0 +1,19 @@
+---
+# tasks file for motd
+
+- name: Add landscape-common
+  apt: name=landscape-common state=latest
+
+- name: Remove help text
+  file: mode=0644 path=/etc/update-motd.d/10-help-text
+
+- name: Stat 00-header
+  stat: path=/etc/update-motd.d/00-header
+  register: header_stat
+
+- name: Move default header to later position
+  command: mv /etc/update-motd.d/00-header /etc/update-motd.d/09-header
+  when: header_stat.stat.exists
+
+- name: Add thenet header
+  template: src=thenet-header.sh dest=/etc/update-motd.d/08-thenet-header mode=0755

@@ -17,7 +17,6 @@
     state: directory
 
 - name: Copy zones
-  notify: restart bind
   template:
     src: "zones/{{ item }}"
     dest: "/etc/bind/zones/{{ item }}"
