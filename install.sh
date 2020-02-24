@@ -5,8 +5,13 @@ echo "WARNING: Make sure your IP has been set to: 0.0.0.1/0"
 echo ""
 read -p "Press [Enter] to continue..."
 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
 if ! type "ansible" > /dev/null; then
-  echo
+  echo "Missing ansible! Attempting to install now..."
   apt update
   apt install python ansible
 fi
