@@ -11,5 +11,5 @@ $TTL	604800
 ;
 	                        IN	NS	ns.thenet.com.
 
-ns.thenet.com.              IN	A	0.0.0.1
-test.thenet.com.            IN  A   0.0.0.2
+ns.thenet.com.              IN	A	10.0.0.1
+test.thenet.com.            IN  A   10.0.0.2
