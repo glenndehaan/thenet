@@ -9,5 +9,21 @@
   command: mv /etc/update-motd.d/00-header /etc/update-motd.d/09-header
   when: header_stat.stat.exists
 
+- name: Stat motd
+  stat: path=/etc/motd
+  register: motd_stat
+
+- name: Delete the motd
+  file:
+    path: /etc/motd
+    state: absent
+  when: motd_stat.stat.exists
+
+- name: Create an empty motd file
+  file:
+    path: /etc/motd
+    state: touch
+  when: motd_stat.stat.exists
+
 - name: Add thenet header
   template: src=thenet-header.sh dest=/etc/update-motd.d/08-thenet-header mode=0755
