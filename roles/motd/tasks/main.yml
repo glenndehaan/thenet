@@ -1,9 +1,6 @@
 ---
 # tasks file for motd
 
-- name: Remove help text
-  file: mode=0644 path=/etc/update-motd.d/10-help-text
-
 - name: Stat 00-header
   stat: path=/etc/update-motd.d/00-header
   register: header_stat
