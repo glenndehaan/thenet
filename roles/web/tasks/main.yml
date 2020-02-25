@@ -69,6 +69,10 @@
   npm:
     name: memcached
     path: /var/www/paste.go/haste-server-master
+- name: Copy Config
+  template:
+    src: paste-config.json
+    dest: /var/www/paste.go/haste-server-master/config.js
 - name: Copy service
   template:
     src: paste-go.service
@@ -78,6 +82,15 @@
     name: paste-go
     state: restarted
     enabled: yes
+- name: Copy Nginx Config
+  template:
+    src: paste.go.conf
+    dest: /etc/nginx/sites-available/paste.go.conf
+- name: Link Nginx Config
+  file:
+    state: link
+    src: /etc/nginx/sites-available/paste.go.conf
+    dest: /etc/nginx/sites-enabled/paste.go.conf
 
 - name: Restart nginx
   service: state=restarted name=nginx
