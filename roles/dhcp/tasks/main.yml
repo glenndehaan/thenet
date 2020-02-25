@@ -11,5 +11,10 @@
     src: dhcpd.conf
     dest: /etc/dhcp/dhcpd.conf
 
+- name: Copy isc-dhcp-server
+  template:
+    src: isc-dhcp-server.conf
+    dest: /etc/default/isc-dhcp-server
+
 - name: Restart isc-dhcp-server
   service: state=restarted name=isc-dhcp-server

@@ -9,7 +9,7 @@ echo "   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝  
 echo "                                                        ";
 
 echo "Installing The Net..."
-echo "WARNING: Make sure your IP has been set to: 10.0.0.1/8"
+echo "WARNING: Make sure your IP has been set to: 10.0.0.1/8 on eth0"
 echo ""
 read -p "Press [Enter] to continue..."
 
