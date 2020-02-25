@@ -45,7 +45,6 @@
   with_items:
     - db.thenet.com
     - db.paste.go
-    - db.progress.go
     - db.chat.go
 
 - name: Restart bind9

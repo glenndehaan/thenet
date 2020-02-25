@@ -1,0 +1,11 @@
+[Unit]
+Description=chat-go
+
+[Service]
+ExecStart=/usr/bin/node /var/www/chat.go/node-chat-master/app.js
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin:/usr/local/bin
+WorkingDirectory=/var/www/chat.go/node-chat-master
+
+[Install]
+WantedBy=multi-user.target

@@ -92,5 +92,33 @@
     src: /etc/nginx/sites-available/paste.go.conf
     dest: /etc/nginx/sites-enabled/paste.go.conf
 
+# chat.go
+- name: Extract node-chat-master.zip
+  unarchive:
+    src: ../files/node-chat-master.zip
+    dest: /var/www/chat.go
+- name: Install packages based on package.json
+  npm:
+    path: /var/www/chat.go/node-chat-master
+    state: present
+- name: Copy service
+  template:
+    src: chat-go.service
+    dest: /etc/systemd/system/chat-go.service
+- name: Restart service
+  service:
+    name: chat-go
+    state: restarted
+    enabled: yes
+- name: Copy Nginx Config
+  template:
+    src: chat.go.conf
+    dest: /etc/nginx/sites-available/chat.go.conf
+- name: Link Nginx Config
+  file:
+    state: link
+    src: /etc/nginx/sites-available/chat.go.conf
+    dest: /etc/nginx/sites-enabled/chat.go.conf
+
 - name: Restart nginx
   service: state=restarted name=nginx

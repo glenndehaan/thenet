@@ -25,7 +25,6 @@ An ansible scripts repo for running your own small world wide web
 * thenet.com
 * chat.go
 * paste.go
-* progress.go
 
 ## Networking
 * eth0 - 10.0.0.1/8
