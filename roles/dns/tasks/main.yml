@@ -44,6 +44,9 @@
     dest: "/etc/bind/zones/{{ item }}"
   with_items:
     - db.thenet.com
+    - db.paste.go
+    - db.progress.go
+    - db.chat.go
 
 - name: Restart bind9
   service: state=restarted name=bind9

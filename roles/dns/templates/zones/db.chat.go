@@ -9,10 +9,9 @@ $TTL	604800
 			2419200		; Expire
 			 604800 )	; Negative Cache TTL
 ;
-                               IN	NS	dns.thenet.com.
+                             IN	  NS    dns.thenet.com.
 
 ; nameserver
 
-thenet.com.                    IN   A   10.0.0.1
-www.thenet.com.                IN   A   10.0.0.1
-dns.thenet.com.                IN   A   10.0.0.1
+chat.go.                    IN   A   10.0.0.1
+www.chat.go.                IN   A   10.0.0.1
