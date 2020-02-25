@@ -46,5 +46,23 @@
     src: /etc/nginx/sites-available/000_default.conf
     dest: /etc/nginx/sites-enabled/000_default.conf
 
+# Install node
+- name: Add node repository key
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+- name: Add node respository
+  apt_repository: mode=644 repo='deb https://deb.nodesource.com/node_8.x {{ ansible_distribution_release }} main' state=present update_cache=yes
+- name: Install node with npm
+  apt: name=nodejs state=latest
+
+# paste.go
+- name: Extract haste-server-master.zip
+  unarchive:
+    src: ../files/haste-server-master.zip
+    dest: /var/www/paste.go
+- name: Install packages based on package.json
+  npm:
+    path: /var/www/paste.go
+    state: present
+
 - name: Restart nginx
   service: state=restarted name=nginx

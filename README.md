@@ -19,6 +19,7 @@ An ansible scripts repo for running your own small world wide web
 * Get a Raspberry Pi or VM running Debian or Ubuntu
 * Clone this repository.
 * Run the `install.sh` and follow the instructions.
+* Follow additional `README.md` files per demo application.
 
 ## Example domains
 * thenet.com
