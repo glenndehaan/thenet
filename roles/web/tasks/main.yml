@@ -26,8 +26,6 @@
   file: state=directory path=/var/www/thenet.com
 - name: Ensure paste.go is there
   file: state=directory path=/var/www/paste.go
-- name: Ensure progress.go is there
-  file: state=directory path=/var/www/progress.go
 - name: Ensure chat.go is there
   file: state=directory path=/var/www/chat.go
 
@@ -101,6 +99,10 @@
   npm:
     path: /var/www/chat.go/node-chat-master
     state: present
+- name: Copy Config
+  template:
+    src: chat-config.json
+    dest: /var/www/paste.go/node-chat-master/config.json
 - name: Copy service
   template:
     src: chat-go.service
