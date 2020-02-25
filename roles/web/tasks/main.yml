@@ -51,18 +51,26 @@
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
 - name: Add node respository
   apt_repository: mode=644 repo='deb https://deb.nodesource.com/node_8.x {{ ansible_distribution_release }} main' state=present update_cache=yes
-- name: Install node with npm
+- name: Install node
   apt: name=nodejs state=latest
+- name: Install npm
+  apt: name=npm state=latest
 
 # paste.go
 - name: Extract haste-server-master.zip
   unarchive:
     src: ../files/haste-server-master.zip
     dest: /var/www/paste.go
+- name: Move app
+  command: mv /var/www/paste.go/haste-server-master /var/www/paste.go
 - name: Install packages based on package.json
   npm:
     path: /var/www/paste.go
     state: present
+- name: Install packages based on package.json
+  npm:
+    name: memcached
+    path: /var/www/paste.go
 
 - name: Restart nginx
   service: state=restarted name=nginx
