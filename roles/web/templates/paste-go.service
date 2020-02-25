@@ -2,10 +2,10 @@
 Description=paste-go
 
 [Service]
-ExecStart=/usr/bin/node /var/www/paste.go/server.js
+ExecStart=/usr/bin/node /var/www/paste.go/haste-server-master/server.js
 Restart=always
 Environment=PATH=/usr/bin:/usr/local/bin:/usr/local/bin
-WorkingDirectory=/var/www/paste.go
+WorkingDirectory=/var/www/paste.go/haste-server-master
 
 [Install]
 WantedBy=multi-user.target
