@@ -102,7 +102,7 @@
 - name: Copy Config
   template:
     src: chat-config.json
-    dest: /var/www/paste.go/node-chat-master/config.json
+    dest: /var/www/chat.go/node-chat-master/config.json
 - name: Copy service
   template:
     src: chat-go.service
