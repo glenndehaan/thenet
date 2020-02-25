@@ -6,14 +6,45 @@
 
 - name: Removing default configuration
   file: state=absent path=/etc/nginx/conf.d/default.conf
+- name: Removing default configuration
+  file: state=absent path=/etc/nginx/sites-enabled/default
+- name: Removing default configuration
+  file: state=absent path=/etc/nginx/sites-available/default
 
 - name: Ensure sites-enabled is there
   file: state=directory path=/etc/nginx/sites-enabled
 - name: Ensure sites-available is there
   file: state=directory path=/etc/nginx/sites-available
+- name: Ensure www is there
+  file: state=directory path=/var/www
 
 - name: Adding Nginx config
   template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+# App folders
+- name: Ensure thenet.com is there
+  file: state=directory path=/var/www/thenet.com
+- name: Ensure paste.go is there
+  file: state=directory path=/var/www/paste.go
+- name: Ensure progress.go is there
+  file: state=directory path=/var/www/progress.go
+- name: Ensure chat.go is there
+  file: state=directory path=/var/www/chat.go
+
+# thenet.com
+- name: Copy thenet.com html
+  template:
+    src: index.html
+    dest: /var/www/thenet.com/index.html
+- name: Copy Nginx Config
+  template:
+    src: thenet.com.conf
+    dest: /etc/nginx/sites-available/000_default.conf
+- name: Link Nginx Config
+  file:
+    state: link
+    src: /etc/nginx/sites-available/000_default.conf
+    dest: /etc/nginx/sites-enabled/000_default.conf
 
 - name: Restart nginx
   service: state=restarted name=nginx
