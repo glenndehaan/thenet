@@ -62,7 +62,9 @@
     src: ../files/haste-server-master.zip
     dest: /var/www/paste.go
 - name: Move app
-  command: mv /var/www/paste.go/haste-server-master /var/www/paste.go
+  command: mv /var/www/paste.go/haste-server-master/* /var/www/paste.go
+- name: Removing default folder
+  file: state=absent path=/var/www/paste.go/haste-server-master
 - name: Install packages based on package.json
   npm:
     path: /var/www/paste.go
@@ -71,6 +73,15 @@
   npm:
     name: memcached
     path: /var/www/paste.go
+- name: Copy service
+  template:
+    src: paste-go.service
+    dest: /etc/systemd/system/paste-go.service
+- name: Restart service
+  service:
+    name: paste-go
+    state: restarted
+    enabled: yes
 
 - name: Restart nginx
   service: state=restarted name=nginx

@@ -1,0 +1,11 @@
+[Unit]
+Description=paste-go
+
+[Service]
+ExecStart=/usr/bin/node /var/www/paste.go/server.js
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin:/usr/local/bin
+WorkingDirectory=/var/www/paste.go
+
+[Install]
+WantedBy=multi-user.target
